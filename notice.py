@@ -8,3 +8,6 @@ print(2)
     #마지막에 커밋 안될경우 터미널에 아래 명령어 입력
     #git config user.name 이름
     #git config user.email 이메일
+    #떵떵떵
+
+# 집 간다
