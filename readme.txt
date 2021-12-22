@@ -8,7 +8,8 @@
     #git config user.email 이메일
 
 ・프로젝트 기획서 확인바람
-
+・샘플데이터
+    https://www.kaggle.com/olistbr/brazilian-ecommerce
 ・커밋시 코멘트작성
 이름/수정내용
 ex) 임윤정/OOO수정
