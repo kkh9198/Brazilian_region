@@ -1,21 +1,22 @@
 
 # 3조 프로젝트 기획서
 
-  프로젝트명(가칭) : Brazilian E-Commerce 지역별 수요 예측
+  프로젝트명(가칭) : Brazilian E-Commerce 배송예측
 
   프로젝트 개요
 
-    - 지역별 제품 수요량 예측
+    - 아래의 조건을 기반으로 배송기간을 예측한다.
+      (지역별,셀러별,상품별)
    
   프로젝트 주요 특징 및 차별성
 
-    - 만족도(가격, 배송기간, 상품성)에 대한 분석
-    - 기간별로 어느 물건이 많이 팔리는가
+    - 좀더 정확한 배송기간을 제공함으로서 구매자에게 유용한 정보를 제공한다.
+    - 기존 배송기간만을 토대로 정보를 제공하는 것이아니라, 상품의 크기도 함께 고려하여서 배송기간을 예측한다.
 
   참고 프로젝트
 
     - https://www.kaggle.com/olistbr/brazilian-ecommerce
-    - Brazilian E-Commerce Public Dataset by Olist
-    - 
+     (Brazilian E-Commerce Public Dataset by Olist)
+    - https://www.kaggle.com/aminnikookaran/delivery-delay-prediction
 
 

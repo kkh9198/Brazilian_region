@@ -11,5 +11,9 @@
 ・샘플데이터
     https://www.kaggle.com/olistbr/brazilian-ecommerce
 ・커밋시 코멘트작성
-이름/수정내용
-ex) 임윤정/OOO수정
+    이름/수정내용
+    ex) 임윤정/OOO수정
+
+・액셀 취소선 단축키 ctrl+5
+
+https://www.kaggle.com/andresionek/geospatial-analysis-of-brazilian-e-commerce
