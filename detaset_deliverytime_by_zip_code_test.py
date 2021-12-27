@@ -53,9 +53,9 @@ delete_order_items_dataset = order_items_dataset.loc[:,['order_id','order_item_i
 delete_order_items_dataset1=delete_order_items_dataset.drop(['order_item_id','shipping_limit_date','price','freight_value'],axis='columns')
 delete_order_items_dataset1.to_csv('delete_order_items_dataset1.csv',index=None)
 #상품
-delete_products_dataset2 = products_dataset.loc[:,['product_id','product_name_lenght','product_description_lenght','product_photos_qty','product_weight_g','product_length_cm','product_height_cm','product_width_cm','product_category_name_english']]
-delete_products_dataset2=delete_products_dataset2.drop(['product_name_lenght','product_description_lenght','product_photos_qty','product_weight_g','product_length_cm','product_height_cm','product_width_cm'],axis='columns')
-delete_products_dataset2.to_csv('delete_products_dataset2.csv',index=None)
+delete_products_dataset2 = products_dataset.loc[:,['no','product_id','product_name_lenght','product_description_lenght','product_photos_qty','product_weight_g','product_length_cm','product_height_cm','product_width_cm','product_category_name_english']]
+delete_products_dataset21=delete_products_dataset2.drop(['no','product_name_lenght','product_description_lenght','product_photos_qty','product_weight_g','product_length_cm','product_height_cm','product_width_cm'],axis='columns')
+delete_products_dataset21.to_csv('delete_products_dataset21.csv',index=None)
 #판매자
 delete_sellers_dataset = sellers_dataset.loc[:,['seller_id','seller_zip_code_prefix','seller_city','seller_state']]
 delete_sellers_dataset1=delete_sellers_dataset.drop(['seller_city','seller_state'],axis='columns')
@@ -67,6 +67,7 @@ order_items_dataset1=pd.read_csv("delete_order_items_dataset1.csv", delimiter=',
 products_dataset21=pd.read_csv("delete_products_dataset21.csv", delimiter=',')
 geo_sellers_dataset1=pd.read_csv("delete_sellers_dataset1.csv", delimiter=',')
 geo_customers_dataset1=pd.read_csv("delete_customers_dataset1.csv", delimiter=',')
+
 
 # 주문, 주문상품
 testa =pd.merge(orders_dataset1,order_items_dataset1,on='order_id')
@@ -201,7 +202,6 @@ orders['order_delivered_carrier_date'] = pd.to_datetime(orders.order_delivered_c
 orders['actual_delivery_time'] = orders.order_delivered_customer_date - orders.order_delivered_carrier_date
 orders['actual_delivery_time'] = orders['actual_delivery_time'].dt.days
 
-orders
 
 gp = orders.groupby('customer_zip_code_prefix_3_digits')['actual_delivery_time'].mean().to_frame()
 delivery_time = brazil_geo.join(gp)
