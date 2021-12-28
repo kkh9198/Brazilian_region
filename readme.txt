@@ -13,6 +13,8 @@
 ・커밋시 코멘트작성
     이름/수정내용
     ex) 임윤정/OOO수정
+・플라스크설정
+    https://krksap.tistory.com/1766
 
 ・액셀 취소선 단축키 ctrl+5
 
