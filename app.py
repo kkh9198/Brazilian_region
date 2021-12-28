@@ -31,7 +31,7 @@ def addrec():
         destination     = seller_lat+","+seller_lng
         mode            = "driving"
         departure_time  = "now"
-        key='AIzaSyCoqfsNFyisaIOFPk_kTPTt4wUyMiaK3Rs'
+        key='key'
 
         url = "https://maps.googleapis.com/maps/api/directions/json?origin="+ origin \
             + "&destination=" + destination \
