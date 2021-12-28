@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>3조 프로젝트</title>
+
+    <!-- Custom fonts for this template-->
+    <link href="{{ url_for('static', filename='vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="{{ url_for('static', filename='css/sb-admin-2.min.css') }}" rel="stylesheet">
+
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCoqfsNFyisaIOFPk_kTPTt4wUyMiaK3Rs&libraries=places&callback=initAutocomplete" async defer></script>
+    <script>
+        var placeSearch, autocomplete,autocomplete_seller;
+        function initAutocomplete() {
+        autocomplete = new google.maps.places.Autocomplete(
+                                            (document.getElementById('autocomplete')),{types: ['geocode']});
+        autocomplete_seller = new google.maps.places.Autocomplete(
+                                            (document.getElementById('autocomplete_seller')),{types: ['geocode']});                                   
+        autocomplete.addListener('place_changed', fillInAddress);
+        autocomplete_seller.addListener('place_changed', fillInAddress_seller);
+        }
+        function fillInAddress() {
+        var place = autocomplete.getPlace();
+            document.getElementById("lat").value=place.geometry.location.lat();
+            document.getElementById("lng").value=place.geometry.location.lng();
+        }
+        function fillInAddress_seller() {
+        var place = autocomplete_seller.getPlace();
+            document.getElementById("lat_seller").value=place.geometry.location.lat();
+            document.getElementById("lng_seller").value=place.geometry.location.lng();
+        }
+    </script>
+</head>
+
+<body class="bg-gradient-primary">
+
+    <div class="container">
+
+        <!-- Outer Row -->
+        <div class="row justify-content-center">
+
+            <div class="col-xl-10 col-lg-12 col-md-9">
+
+                <div class="card o-hidden border-0 shadow-lg my-5">
+                    <div class="card-body p-0">
+                        <!-- Nested Row within Card Body -->
+                        <div class="row">
+                            
+                            <div class="col-lg-6 d-none d-lg-block bg-login-image">
+                                <img src="{{ url_for('static', filename='img/brazil_map.jpg') }}"  width="110%" height="100%">
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="p-5">
+                                    <div class="text-center">
+                                        <h1 class="h4 text-gray-900 mb-4">3조 배송도착시간 예측</h1>
+                                    </div>
+                                    <form action = "{{ url_for('addrec') }}" method = "POST" class="user">
+                                        <div class="form-group">
+                                            <input id="autocomplete" class="form-control form-control-user" placeholder="고객의 주소를 입력" type="text"><br>
+                                            <input class="form-control form-control-user" id="lat" type="hidden" name ="lat"/>
+                                            <input class="form-control form-control-user" id="lng" type="hidden" name ="lng"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <input id="autocomplete_seller" class="form-control form-control-user" placeholder="판매자의 주소를 입력" type="text"><br>
+                                            <input class="form-control form-control-user" id="lat_seller" type="hidden" name ="lat_seller"/>
+                                            <input class="form-control form-control-user" id="lng_seller" type="hidden" name ="lng_seller"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <p><input class="form-control form-control-user" type = "text" name = "product_size_x" placeholder="상자의 가로길이"/></p>
+                                            <p><input class="form-control form-control-user" type = "text" name = "product_size_y" placeholder="상자의 세로길이"/></p>
+                                            <p><input class="form-control form-control-user" type = "text" name = "product_size_z" placeholder="상자의 높이"/></p>
+                                            <p><input class="form-control form-control-user" type = "text" name = "product_g" placeholder="상자의 무게(g)"/></p>
+                                        </div>
+                                        <input class="btn btn-primary btn-user btn-block" type = "submit" value = "결과값 확인" />
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="{{ url_for('static', filename='vendor/jquery/jquery.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="{{ url_for('static', filename='vendor/jquery-easing/jquery.easing.min.js') }}"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="{{ url_for('static', filename='js/sb-admin-2.min.js') }}"></script>
+
+</body>
+
+</html>

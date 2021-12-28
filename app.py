@@ -14,6 +14,10 @@ app = Flask(__name__)
 def index():
     return render_template('main.html')
 
+@app.route('/home/')
+def sample():
+    return render_template('home.html')    
+
 @app.route('/addrec/', methods=['POST', 'GET'])
 def addrec():
     if request.method == 'POST':
@@ -31,7 +35,7 @@ def addrec():
         destination     = seller_lat+","+seller_lng
         mode            = "driving"
         departure_time  = "now"
-        key='key'
+        key='키값'
 
         url = "https://maps.googleapis.com/maps/api/directions/json?origin="+ origin \
             + "&destination=" + destination \
@@ -55,10 +59,10 @@ def addrec():
             wholeDict = dict(json.load(transitJson))
         print(wholeDict)
         path            = wholeDict["routes"][0]["legs"][0]
-        duration_sec    = path["distance"]["value"]
+        duration_sec    = path["distance"]["text"]
   
         #----------------------------------------------
-        result=customer_lat+" "+customer_lng+" "+seller_lat+" "+seller_lng+", 거리:"+str(duration_sec)
+        result=customer_lat+" "+customer_lng+" "+seller_lat+" "+seller_lng+", 거리:"+duration_sec
         print(result)
         return render_template('result.html', msg=result)
 
