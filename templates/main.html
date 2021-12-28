@@ -1,0 +1,53 @@
+<html>
+    <head>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCoqfsNFyisaIOFPk_kTPTt4wUyMiaK3Rs&libraries=places&callback=initAutocomplete" async defer></script>
+        <script>
+          var placeSearch, autocomplete,autocomplete_seller;
+          function initAutocomplete() {
+            autocomplete = new google.maps.places.Autocomplete(
+                                                (document.getElementById('autocomplete')),{types: ['geocode']});
+            autocomplete_seller = new google.maps.places.Autocomplete(
+                                                (document.getElementById('autocomplete_seller')),{types: ['geocode']});                                   
+            autocomplete.addListener('place_changed', fillInAddress);
+            autocomplete_seller.addListener('place_changed', fillInAddress_seller);
+          }
+          function fillInAddress() {
+            var place = autocomplete.getPlace();
+              document.getElementById("lat").value=place.geometry.location.lat();
+              document.getElementById("lng").value=place.geometry.location.lng();
+          }
+          function fillInAddress_seller() {
+            var place = autocomplete_seller.getPlace();
+              document.getElementById("lat_seller").value=place.geometry.location.lat();
+              document.getElementById("lng_seller").value=place.geometry.location.lng();
+          }
+        </script>
+    </head>
+
+   <body>
+      <form action = "{{ url_for('addrec') }}" method = "POST">
+         <p>brazil:</p>
+         <p>고객위치
+            <div id="locationField">
+                <input id="autocomplete" placeholder="고객의 주소를 입력" type="text" style="width:40%; height:30px">
+            </div>
+            <input class="field" id="lat" type="text" name ="lat"/>
+            <input class="field" id="lng" type="text" name ="lng"/>
+         </p>
+         <p>판매자위치
+            <div id="locationField">
+                <input id="autocomplete_seller" placeholder="판매자의 주소를 입력" type="text" style="width:40%; height:30px">
+            </div>
+            <input class="field" id="lat_seller" type="text" name ="lat_seller"/>
+            <input class="field" id="lng_seller" type="text" name ="lng_seller"/>
+        </p>
+         <p>물건크기</p>
+         <p>가로<input type = "text" name = "product_size_x" /></p>
+         <p>세로<input type = "text" name = "product_size_y" /></p>
+         <p>높이<input type = "text" name = "product_size_z" /></p>
+         <p>물건무게</p>
+         <p><input type = "text" name = "product_g" />g</p>
+         <p><input type = "submit" value = "submit" /></p>
+      </form>
+   </body>
+</html>
