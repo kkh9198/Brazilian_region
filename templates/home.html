@@ -87,13 +87,8 @@
                                                 <option value= "{{row["category"]}}">{{row["category"]}}</option>
                                             {% endfor %}
                                         </select>
-                                        <tbody>
-                                        </tbody>
                                         <select class="custom-select custom-select-sm form-control form-control-sm" id="sellers" method="GET">
                                             <option value = "" selected disabled hidden>==판매자==</option>
-                                            {% for row in datas %}
-                                                <option value= "{{row["product_id"]}}">{{row["product_id"]}}</option>
-                                            {% endfor %}
                                         </select>
                                         <table>
 
@@ -126,7 +121,7 @@
                 .done(function(datas){
                     console.log(datas)
                     console.log(datas.length)
-
+                    $("#sellers").children().remove();
                     var id=""
                     for(var count = 3; count < datas.length; count++){
                         id=id+datas[count];
