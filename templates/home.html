@@ -21,7 +21,7 @@
     <link href="{{ url_for('static', filename='css/sb-admin-2.min.css') }}" rel="stylesheet">
 
 
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCoqfsNFyisaIOFPk_kTPTt4wUyMiaK3Rs&libraries=places&callback=initAutocomplete" async defer></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=키값&libraries=places&callback=initAutocomplete" async defer></script>
     <script>
         var placeSearch, autocomplete,autocomplete_seller;
         function initAutocomplete() {
@@ -73,18 +73,23 @@
                                             <input class="form-control form-control-user" id="lat" type="hidden" name ="lat"/>
                                             <input class="form-control form-control-user" id="lng" type="hidden" name ="lng"/>
                                         </div>
-                                        <div class="form-group">
-                                            <input id="autocomplete_seller" class="form-control form-control-user" placeholder="판매자의 주소를 입력" type="text"><br>
-                                            <input class="form-control form-control-user" id="lat_seller" type="hidden" name ="lat_seller"/>
-                                            <input class="form-control form-control-user" id="lng_seller" type="hidden" name ="lng_seller"/>
-                                        </div>
-                                        <div class="form-group">
-                                            <p><input class="form-control form-control-user" type = "text" name = "product_size_x" placeholder="상자의 가로길이"/></p>
-                                            <p><input class="form-control form-control-user" type = "text" name = "product_size_y" placeholder="상자의 세로길이"/></p>
-                                            <p><input class="form-control form-control-user" type = "text" name = "product_size_z" placeholder="상자의 높이"/></p>
-                                            <p><input class="form-control form-control-user" type = "text" name = "product_g" placeholder="상자의 무게(g)"/></p>
-                                        </div>
+                                        <select class="custom-select custom-select-sm form-control form-control-sm" name= products method="GET" action="/">
+                                            <option value = "" selected disabled hidden>==상품리스트==</option>
+                                            {% for row in rows %}
+                                                <option value= "{{row["category"]}}">{{row["category"]}}</option>
+                                            {% endfor %}
+                                        </select>
+                                        <select class="custom-select custom-select-sm form-control form-control-sm" name= seller method="GET" action="/">
+                                            <option value = "" selected disabled hidden>==판매자==</option>
+                                            {% for row in rows1 %}
+                                                <option value= "{{row["category"]}}">{{row["category"]}}</option>
+                                            {% endfor %}
+                                        </select>
+                                        <table>
+
+                                        </table>
                                         <input class="btn btn-primary btn-user btn-block" type = "submit" value = "결과값 확인" />
+                                        
                                     </form>
                                 </div>
                             </div>

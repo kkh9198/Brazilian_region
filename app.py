@@ -6,8 +6,9 @@ import json
 import os
 import ssl
 import urllib.request
-
 from flask import Flask, render_template, request, redirect, url_for
+import sqlite3 as sql
+
 app = Flask(__name__)
 
 @app.route('/')
@@ -16,7 +17,15 @@ def index():
 
 @app.route('/home/')
 def sample():
-    return render_template('home.html')    
+    con = sql.connect("database.db")
+    con.row_factory = sql.Row
+
+    cur = con.cursor()
+    cur.execute("select distinct CATEGORY from olist_products")
+
+    rows = cur.fetchall()
+    rows1=cur.fetchall()
+    return render_template('home.html', rows = rows,rows1=rows1)    
 
 @app.route('/addrec/', methods=['POST', 'GET'])
 def addrec():
@@ -60,7 +69,7 @@ def addrec():
         print(wholeDict)
         path            = wholeDict["routes"][0]["legs"][0]
         duration_sec    = path["distance"]["text"]
-  
+
         #----------------------------------------------
         result=customer_lat+" "+customer_lng+" "+seller_lat+" "+seller_lng+", 거리:"+duration_sec
         print(result)
