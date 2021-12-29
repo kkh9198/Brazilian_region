@@ -8,6 +8,7 @@ import ssl
 import urllib.request
 from flask import Flask, render_template, request, redirect, url_for, jsonify
 import sqlite3 as sql
+import numpy as np
 
 app = Flask(__name__)
 
@@ -27,20 +28,28 @@ def sample():
     rows = cur.fetchall()
     return render_template('home.html', rows = rows)    
 
-@app.route('/products', methods=['POST'])
+@app.route('/products/', methods=['POST'])
 def searchProducts():
     data = request.form['categoryName']
-    print(data)
-    #sql = 
+    print("########################"+data)
     con = sql.connect("database.db")
     con.row_factory=sql.Row
     cur= con.cursor()
     cur.execute("select product_id from olist_products where category = '" + data + "'")
   
     datas = cur.fetchall()
-    print(datas)
+    print(type(datas))
+    #print(jsonify(datas))
+    datass = []
+    for row in datas:
+        datass.append([x for x in row]) # or simply data.append(list(row))
+    #datass= np.squeeze(datass,axis=1)
+
+    return json.dumps(datass)
+    #return redirect(datas)
+    # return jsonify(datas)
     #return jsonify({'datas' : datas})   
-    return render_template('home.html', datas=datas)
+    #return render_template('home.html', datas=datas)
 
 
 @app.route('/addrec/', methods=['POST', 'GET'])

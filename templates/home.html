@@ -87,6 +87,8 @@
                                                 <option value= "{{row["category"]}}">{{row["category"]}}</option>
                                             {% endfor %}
                                         </select>
+                                        <tbody>
+                                        </tbody>
                                         <select class="custom-select custom-select-sm form-control form-control-sm" id="sellers" method="GET">
                                             <option value = "" selected disabled hidden>==판매자==</option>
                                             {% for row in datas %}
@@ -119,13 +121,12 @@
                         categoryName : $("#products").val()
                     },
                     type : "POST",
-                    url : "/products"
+                    url : "/products/"
                 })
                 .done(function(datas){
                     console.log(datas)
-                    data_list = datas['product_id'];
-                    console.log(data_list)
-                    for(var count = 0; count < datas.size(); count++){
+                    console.log(datas.length)
+                    for(var count = 0; count < datas.length/38; count++){
                         var option = $("<option>" + datas[count] + "</option>");
                         $('#sellers').append(option)
                     }
