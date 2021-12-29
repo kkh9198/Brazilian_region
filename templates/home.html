@@ -11,6 +11,15 @@
 
     <title>3조 프로젝트</title>
 
+        <!-- Bootstrap core JavaScript-->
+        <script src="{{ url_for('static', filename='vendor/jquery/jquery.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    
+        <!-- Core plugin JavaScript-->
+        <script src="{{ url_for('static', filename='vendor/jquery-easing/jquery.easing.min.js') }}"></script>
+    
+        <!-- Custom scripts for all pages-->
+        <script src="{{ url_for('static', filename='js/sb-admin-2.min.js') }}"></script>
     <!-- Custom fonts for this template-->
     <link href="{{ url_for('static', filename='vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
     <link
@@ -46,7 +55,6 @@
 </head>
 
 <body class="bg-gradient-primary">
-
     <div class="container">
 
         <!-- Outer Row -->
@@ -73,16 +81,16 @@
                                             <input class="form-control form-control-user" id="lat" type="hidden" name ="lat"/>
                                             <input class="form-control form-control-user" id="lng" type="hidden" name ="lng"/>
                                         </div>
-                                        <select class="custom-select custom-select-sm form-control form-control-sm" name= products method="GET" action="/">
+                                        <select class="custom-select custom-select-sm form-control form-control-sm" name="products" id="products" method="GET">
                                             <option value = "" selected disabled hidden>==상품리스트==</option>
                                             {% for row in rows %}
                                                 <option value= "{{row["category"]}}">{{row["category"]}}</option>
                                             {% endfor %}
                                         </select>
-                                        <select class="custom-select custom-select-sm form-control form-control-sm" name= seller method="GET" action="/">
+                                        <select class="custom-select custom-select-sm form-control form-control-sm" id="sellers" method="GET">
                                             <option value = "" selected disabled hidden>==판매자==</option>
-                                            {% for row in rows1 %}
-                                                <option value= "{{row["category"]}}">{{row["category"]}}</option>
+                                            {% for row in datas %}
+                                                <option value= "{{row["product_id"]}}">{{row["product_id"]}}</option>
                                             {% endfor %}
                                         </select>
                                         <table>
@@ -103,15 +111,31 @@
 
     </div>
 
-    <!-- Bootstrap core JavaScript-->
-    <script src="{{ url_for('static', filename='vendor/jquery/jquery.min.js') }}"></script>
-    <script src="{{ url_for('static', filename='vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script>
+        $(function(){
+            $("#products").on("change", function(event){
+                $.ajax({
+                    data:{
+                        categoryName : $("#products").val()
+                    },
+                    type : "POST",
+                    url : "/products"
+                })
+                .done(function(datas){
+                    console.log(datas)
+                    data_list = datas['product_id'];
+                    console.log(data_list)
+                    for(var count = 0; count < datas.size(); count++){
+                        var option = $("<option>" + datas[count] + "</option>");
+                        $('#sellers').append(option)
+                    }
+                })
+                
+            })
+        })
+    </script>
 
-    <!-- Core plugin JavaScript-->
-    <script src="{{ url_for('static', filename='vendor/jquery-easing/jquery.easing.min.js') }}"></script>
 
-    <!-- Custom scripts for all pages-->
-    <script src="{{ url_for('static', filename='js/sb-admin-2.min.js') }}"></script>
 
 </body>
 

@@ -6,7 +6,7 @@ import json
 import os
 import ssl
 import urllib.request
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, jsonify
 import sqlite3 as sql
 
 app = Flask(__name__)
@@ -21,11 +21,27 @@ def sample():
     con.row_factory = sql.Row
 
     cur = con.cursor()
+    
     cur.execute("select distinct CATEGORY from olist_products")
 
     rows = cur.fetchall()
-    rows1=cur.fetchall()
-    return render_template('home.html', rows = rows,rows1=rows1)    
+    return render_template('home.html', rows = rows)    
+
+@app.route('/products', methods=['POST'])
+def searchProducts():
+    data = request.form['categoryName']
+    print(data)
+    #sql = 
+    con = sql.connect("database.db")
+    con.row_factory=sql.Row
+    cur= con.cursor()
+    cur.execute("select product_id from olist_products where category = '" + data + "'")
+  
+    datas = cur.fetchall()
+    print(datas)
+    #return jsonify({'datas' : datas})   
+    return render_template('home.html', datas=datas)
+
 
 @app.route('/addrec/', methods=['POST', 'GET'])
 def addrec():
