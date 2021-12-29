@@ -126,9 +126,18 @@
                 .done(function(datas){
                     console.log(datas)
                     console.log(datas.length)
-                    for(var count = 0; count < datas.length/38; count++){
-                        var option = $("<option>" + datas[count] + "</option>");
-                        $('#sellers').append(option)
+
+                    var id=""
+                    for(var count = 3; count < datas.length; count++){
+                        id=id+datas[count];
+                        if(id.length==32){
+                            console.log(id)
+                            var option = $("<option>" + id + "</option>");
+                            $('#sellers').append(option)
+                            count=count+6;
+                            id="";
+                        }
+                        
                     }
                 })
                 
