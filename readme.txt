@@ -20,5 +20,8 @@
 ・최적화 모델 추천 라이브러리(AutoML) : https://preservsun.tistory.com/67
 https://www.kaggle.com/andresionek/geospatial-analysis-of-brazilian-e-commerce
 
+・화면녹화, 윈도우 내장녹화프로그램
+https://blog.naver.com/whitepolarbear/222583203188
+
 err
  DLL load failed while importing _arpack: 지정된 프로시저를 찾을 수 없습니다.
