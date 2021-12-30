@@ -25,10 +25,10 @@ def plusCustomer(x):
 def plusSeller(x):
     return x+"_S"
 
-def ss(a):
+def ss(a,b,c,d,e,f,g):
     df = pd.read_csv('dataInputFormat.csv')
 
-    new = pd.DataFrame([makeMyList(28,11.22,950.0,'housewares','SP',184.0,27000.0)],
+    new = pd.DataFrame([makeMyList(a,b,c,d,e,f,g)],
                 columns = df.columns.tolist())
 
     #test 전처리
