@@ -98,7 +98,7 @@ def addrec():
         destination     = lat + "," + lng
         mode            = "driving"
         departure_time  = "now"
-        key='AIzaSyCoqfsNFyisaIOFPk_kTPTt4wUyMiaK3Rs'
+        key='키값'
 
         url = "https://maps.googleapis.com/maps/api/directions/json?origin="+ origin \
             + "&destination=" + destination \
