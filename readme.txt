@@ -19,3 +19,6 @@
 ・액셀 취소선 단축키 ctrl+5
 ・최적화 모델 추천 라이브러리(AutoML) : https://preservsun.tistory.com/67
 https://www.kaggle.com/andresionek/geospatial-analysis-of-brazilian-e-commerce
+
+err
+ DLL load failed while importing _arpack: 지정된 프로시저를 찾을 수 없습니다.
