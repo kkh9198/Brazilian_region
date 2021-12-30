@@ -30,7 +30,7 @@
     <link href="{{ url_for('static', filename='css/sb-admin-2.min.css') }}" rel="stylesheet">
 
 
-    <script src="https://maps.googleapis.com/maps/api/js?key=키값&libraries=places&callback=initAutocomplete" async defer></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCoqfsNFyisaIOFPk_kTPTt4wUyMiaK3Rs&libraries=places&callback=initAutocomplete" async defer></script>
     <script>
         var placeSearch, autocomplete,autocomplete_seller;
         function initAutocomplete() {
@@ -87,12 +87,10 @@
                                                 <option value= "{{row["category"]}}">{{row["category"]}}</option>
                                             {% endfor %}
                                         </select>
-                                        <select class="custom-select custom-select-sm form-control form-control-sm" id="sellers" method="GET">
-                                            <option value = "" selected disabled hidden>==판매자==</option>
+                                        <select class="custom-select custom-select-sm form-control form-control-sm" id="product_id" name="product_id" method="GET">
+                                            <option value = "" selected disabled hidden>==상품번호==</option>
                                         </select>
-                                        <table>
-
-                                        </table>
+                                        <br><br><br>
                                         <input class="btn btn-primary btn-user btn-block" type = "submit" value = "결과값 확인" />
                                         
                                     </form>
@@ -122,14 +120,13 @@
 
                     console.log(typeof(datas))
                    
-                    $("#sellers").children().remove();
+                    $("#product_id").children().remove();
 
                     for(var count = 0 in datas){
                         var option = $("<option>" + datas[count] + "</option>");
-                        $('#sellers').append(option);
+                        $('#product_id').append(option);
                     }
                 })
-                
             })
         })
     </script>

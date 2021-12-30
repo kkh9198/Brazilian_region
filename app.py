@@ -31,7 +31,7 @@ def sample():
 @app.route('/products/', methods=['POST'])
 def searchProducts():
     data = request.form['categoryName']
-    print("########################"+data)
+
     con = sql.connect("database.db")
     con.row_factory=sql.Row
     cur= con.cursor()
@@ -40,19 +40,30 @@ def searchProducts():
     datas = cur.fetchall()
     print(type(datas))
 
-    #print(jsonify(datas))
     datass = []
     for row in datas:
         datass.append([x for x in row])
     datass= np.squeeze(datass,axis=1).tolist()
 
     con.close()
-    # return json.dumps(datass)
-    #return redirect(datas)
-    return jsonify(datass)
-    #return jsonify({'datas' : datas})   
-    #return render_template('home.html', datas=datas)
 
+    return jsonify(datass)
+
+# @app.route('/sellers/', methods=['POST'])
+# def searchSellers():
+#     data = request.form['productId']
+#     print("########################"+data)
+#     con = sql.connect("database.db")
+#     # con.row_factory=sql.Row
+#     cur= con.cursor()
+#     datas = cur.execute("select seller_id from olist_products where product_id = '" + data + "'").fetchone()
+  
+#     print(type(datas))
+#     print(datas)
+
+#     con.close()
+
+#     return jsonify(datas)
 
 @app.route('/addrec/', methods=['POST', 'GET'])
 def addrec():
@@ -60,18 +71,37 @@ def addrec():
         #입력값을 받는다.
         customer_lat = request.form['lat']
         customer_lng = request.form['lng']
-        seller_lat = request.form['lat_seller']
-        seller_lng  = request.form['lng_seller']
-        product_size_x = request.form['product_size_x']
-        product_size_y = request.form['product_size_y']
-        product_size_z = request.form['product_size_z']
-        product_g = request.form['product_g']
+        product_id = request.form['product_id']
+
+        con = sql.connect("database.db")
+        # con.row_factory = sql.Row
+
+        cur = con.cursor()
+        
+        cur.execute("select * from OLIST_PRODUCTS a LEFT JOIN OLIST_SELLERS b on a.SELLER_ID = b.SELLER_ID where PRODUCT_ID = '" + product_id + "'")
+
+        rows = cur.fetchone()
+        product_id= rows[0]
+        seller_id= rows[1]
+        product_weight_g= rows[2]
+        product_volume= rows[3]
+        category= rows[4]
+        price= rows[5]
+        freight_value= rows[6]
+        state= rows[8]
+        lat= rows[9]
+        lng= rows[10]
+
+        
+        print(rows)
+        print(len(rows))
+        print("******************************"+lat + lng)
         #걸리는 시간을 구글에 검색
         origin          = customer_lat+","+customer_lng
-        destination     = seller_lat+","+seller_lng
+        destination     = lat + "," + lng
         mode            = "driving"
         departure_time  = "now"
-        key='키값'
+        key='AIzaSyCoqfsNFyisaIOFPk_kTPTt4wUyMiaK3Rs'
 
         url = "https://maps.googleapis.com/maps/api/directions/json?origin="+ origin \
             + "&destination=" + destination \
@@ -98,7 +128,7 @@ def addrec():
         duration_sec    = path["distance"]["text"]
 
         #----------------------------------------------
-        result=customer_lat+" "+customer_lng+" "+seller_lat+" "+seller_lng+", 거리:"+duration_sec
+        result=customer_lat+" " + customer_lng + " " + lat + " " + lng + ", 거리:" + duration_sec
         print(result)
         return render_template('result.html', msg=result)
 
