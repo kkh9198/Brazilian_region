@@ -17,5 +17,5 @@
     https://krksap.tistory.com/1766
 
 ・액셀 취소선 단축키 ctrl+5
-
+・최적화 모델 추천 라이브러리(AutoML) : https://preservsun.tistory.com/67
 https://www.kaggle.com/andresionek/geospatial-analysis-of-brazilian-e-commerce
