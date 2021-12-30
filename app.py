@@ -39,15 +39,17 @@ def searchProducts():
   
     datas = cur.fetchall()
     print(type(datas))
+
     #print(jsonify(datas))
     datass = []
     for row in datas:
-        datass.append([x for x in row]) # or simply data.append(list(row))
-    #datass= np.squeeze(datass,axis=1)
+        datass.append([x for x in row])
+    datass= np.squeeze(datass,axis=1).tolist()
 
-    return json.dumps(datass)
+    con.close()
+    # return json.dumps(datass)
     #return redirect(datas)
-    # return jsonify(datas)
+    return jsonify(datass)
     #return jsonify({'datas' : datas})   
     #return render_template('home.html', datas=datas)
 
