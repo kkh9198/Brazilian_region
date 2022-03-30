@@ -10,7 +10,7 @@
 
 ### 1.  프로젝트 주제 
 
-   브라질 E-commerce회사인 Olist의 거래 정보 데이터(https://www.kaggle.com/olistbr/brazilian-ecommerce)를 활용한 배송기간예측
+   브라질 E-commerce회사인 Olist의 거래 정보 데이터(https://www.kaggle.com/olistbr/brazilian-ecommerce) 를 활용한 배송기간예측
 
    
 
