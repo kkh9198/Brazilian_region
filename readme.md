@@ -34,7 +34,8 @@
 
 데이터는 캐글 Olist의 거래 정보 데이터(https://www.kaggle.com/olistbr/brazilian-ecommerce) 를 활용함.
 데이터셋의 ERD는 다음과 같다.
-    ![ERD](./이미지/Olist/ERD.png)
+
+![ERD](./이미지/Olist/ERD.png)
 
 이중에서 분석에 필요한 컬러만 팀 회의를 통해 선정
 
