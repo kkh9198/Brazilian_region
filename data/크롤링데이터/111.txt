@@ -1,0 +1,43 @@
+import pandas as pd
+df=pd.read_csv('error_data.csv')
+location = df.iloc[:,[0,-5,-4,-3,-2]]
+from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
+from bs4 import BeautifulSoup
+import time
+
+oid = []
+dist = []
+i=0
+browser = webdriver.Chrome()
+idx=0
+for j in range(40):
+    for i in range(500): 
+        try:
+            browser.get("https://www.google.com/maps/dir/'"+str(location.iloc[idx][1])+","+
+            str(location.iloc[idx][2])+"'/'"+str(location.iloc[idx][3])+','+str(location.iloc[idx][4])+"'/")
+            time.sleep(2)
+            a= float(browser.find_element_by_xpath('//*[@id="section-directions-trip-0"]/div/div[1]/div[1]/div[2]/div').text[:-3].replace(',',''))
+            # dic = {'order_id': location[i][0], 'distance': a}
+            oid.append(location.iloc[idx][0])
+            dist.append(a)
+            df_message = pd.DataFrame({'order_id':oid,'distance':dist})
+            df_message.rename(columns={0:'distance'},inplace=True)
+            idx += 1
+
+            print(f"j = {j}, i = {i} : {a} KM")
+
+            f=open("error_success.txt", "a", encoding="UTF-8")
+            f.write(str(a) + f"   {j} {i}\n")
+            f.close
+        except:
+            f=open("error_fail.txt", "a", encoding="UTF-8")
+            f.write(f"j = {j}, i = {location.iloc[idx][0]} \n")
+            f.close
+            idx += 1
+
+    try:
+        addr = 'error_success'+str(j+1)+'.csv'
+        df_message.to_csv(addr, index=False, encoding='utf-8')
+    except:
+        pass
