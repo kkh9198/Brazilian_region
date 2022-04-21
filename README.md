@@ -27,7 +27,7 @@
 
 |언어|분석 라이브러리|웹|데이터 분석|
 |---|---|---|---|
-|Python,Java,SQL|Pandas, Numpy, Sikit-Learn,XGBRegressor,BeautifulSoup|HTML5,JS,ajax,CSS|pandas,numpy,datetime,train_test_split,Pipeline,ColumnTransformer,StandardScaler,XGBRegressor,MultiLabelBinarizer,seabBeautifulSoup
+|Python,Java,SQL|Pandas, Numpy, Sikit-Learn,XGBRegressor,BeautifulSoup|HTML5,JS,ajax,CSS|pandas,numpy,datetime,train_test_split,StandardScaler,</br> XGBRegressor,MultiLabelBinarizer,seabBeautifulSoup
 
 |개발 도구|데이터베이스|협업 툴|
 |---|---|---|
