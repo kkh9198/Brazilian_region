@@ -1,8 +1,38 @@
 #  브라질 E-commerce Olist 배송기간 예측 프로젝트
 
-
-
 팀원 :  김강현, 김주성, 이힘찬, 윤민우, 임윤정
+
+## 프로젝트 요약
+
+### 1.  프로젝트 주제 
+
+   브라질 E-commerce회사인 Olist의 거래 정보 데이터(https://www.kaggle.com/olistbr/brazilian-ecommerce) 를 활용한 배송기간예측
+   
+
+### 2.  주제 선정 배경
+
+* 브라질의 배송환경은 국내와 다르게 굉장히 오랜시간이 걸리고, 도심과 비도심의 배송기간의 격차가 큽니다. 따라서 본 프로젝트를 통해 브라질의 Olist를 이용하는 고객에게 예상 배송기간을 예측하고, 더 나아가 이 서비스를 Olist측에 제안하는 형태로 진행했습니다.
+
+### 3.  프로젝트 개요
+* Kaggle출처(https://www.kaggle.com/olistbr/brazilian-ecommerce) 를 활용해 배송기간을 예측 하는 모형을 만들고, 이를 서비스화 하여 제공함으로 Olist사에는 고정 고객 유치와 고객에게는 예상 배송기간 제공이라는 서비스를 제공합니다. 
+
+![아키텍처](./이미지/Olist/아키텍처.png)
+
+
+* 분석된 데이터는 자바와 파이썬 flask를 통해 웹으로 구현 됩니다.  DB는 sqlite를 사용했습니다. 
+
+### 4.  분석에 사용된 툴
+
+
+
+|언어|분석 라이브러리|웹|데이터 분석|
+|---|---|---|---|
+|Python,Java,SQL|Pandas, Numpy, Sikit-Learn,XGBRegressor,BeautifulSoup|HTML5,JS,ajax,CSS|pandas,numpy,datetime,train_test_split,Pipeline,ColumnTransformer,StandardScaler,XGBRegressor,MultiLabelBinarizer,seabBeautifulSoup
+
+|개발 도구|데이터베이스|협업 툴|
+|---|---|---|
+|Vscode 1.63.2,Python 3.9.7,Jupyter notebook 6.4.5,ANACONDA 2.1.1|Sqlite 3.12.2|Google Drive & Github|
+
 
 
 
